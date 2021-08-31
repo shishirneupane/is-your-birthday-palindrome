@@ -3,7 +3,7 @@
 body {
   font-family: Montserrat;
   font-weight: bold;
-  background-color: #abcdd2;
+  background-color: #f1f2f3;
   text-align: center;
   margin: 0;
 }
@@ -16,10 +16,14 @@ a#github-repo {
   top: 0.5rem;
 }
 
+h3 {
+  line-height: 2rem;
+}
+
 label {
   font-size: 1.4rem;
   display: block;
-  margin: 0.5rem auto 0;
+  margin: 1.5rem auto 0;
   padding: 1rem;
 }
 
@@ -27,7 +31,7 @@ input {
   font-family: Montserrat;
   font-size: 1.2rem;
   font-weight: bold;
-  background-color: #e1ecff;
+  background-color: #dde1e7;
   text-align: center;
   border: 1px solid black;
   border-radius: 0.5rem;
@@ -46,7 +50,7 @@ button#check-button {
   border: 1px solid black;
   border-radius: 0.5rem;
   padding: 0.5rem 1.5rem;
-  margin: 1.3rem auto;
+  margin: 1.2rem auto;
 }
 
 button#check-button:hover {
@@ -58,6 +62,19 @@ h2#output-text {
   display: none;
   margin: 1.8rem auto;
   font-size: 1.5rem;
+  line-height: 2.2rem;
+}
+
+h2#output-text #output-text-inverted {
+  color: #ff5200;
+}
+
+div#spinner {
+  display: none;
+}
+
+div#spinner img {
+  width: 7%;
 }
 
 /* privacy notice */
@@ -68,6 +85,8 @@ div#privacy-notice {
   font-size: 1.1rem;
   padding: 1rem;
   margin: 3rem auto 0;
-  max-width: 90%;
-  width: 860px;
+  width: 870px;
+  position: absolute;
+  left: 230px;
+  bottom: 3.5rem;
 }

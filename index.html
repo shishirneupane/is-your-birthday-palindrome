@@ -20,7 +20,11 @@
   <h1>
     <span>🎁</span> Is your Birthday Palindrome? <span>🎂</span>
   </h1>
-  <h3>Enter your date of birth and find out whether it is palindrome or not.</h3>
+  <h3>
+    Enter your date of birth and find out whether it is palindrome or not in any of these 6 formats.
+    <br>
+    dd-mm-yyyy / mm-dd-yyyy / yyyy-mm-dd / dd-mm-yy / mm-dd-yy / yy-mm-dd
+  </h3>
 
   <label for="date-of-birth">Date of Birth</label>
   <input id="date-of-birth" type="date">
@@ -28,6 +32,10 @@
   <button id="check-button">Check</button>
 
   <h2 id="output-text"></h2>
+
+  <div id="spinner">
+    <img src="/infinity.svg" alt="spinner">
+  </div>
 
   <div id="privacy-notice">
     <span style="color: #ff5200;">Privacy Notice :</span> We do not store your data. So, no need to worry about your

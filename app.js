@@ -1,4 +1,4 @@
-// ex 1
+﻿// ex 1
 function reverseStr(str) {
   var reverse = str.split('').reverse().join('');
   return reverse;
@@ -164,6 +164,7 @@ function getPreviousDate(date) {
   }
 }
 
+// ex 6
 function getNextPalindromeDate(date) {
   var daysForNextPalindromeDate = 0;
   var nextDate = getNextDate(date);
@@ -180,6 +181,7 @@ function getNextPalindromeDate(date) {
   return [daysForNextPalindromeDate, nextDate];
 }
 
+// bonus exercise
 function getPreviousPalindromeDate(date) {
   var daysForPreviousPalindromeDate = 0;
   var previousDate = getPreviousDate(date);
@@ -196,10 +198,12 @@ function getPreviousPalindromeDate(date) {
   return [daysForPreviousPalindromeDate, previousDate];
 }
 
+
 // UI Part
 var dateOfBirth = document.querySelector("#date-of-birth");
 var checkButton = document.querySelector("#check-button");
 var outputText = document.querySelector("#output-text");
+var spinner = document.querySelector("#spinner");
 
 checkButton.addEventListener("click", checkButtonHandler);
 
@@ -217,22 +221,43 @@ function checkButtonHandler() {
     var isPalindrome = checkPalindromeForAllDateFormats(date);
 
     if (isPalindrome) {
-      outputText.style.display = "block";
-      outputText.innerHTML = "<span>🎉</span> <span>🎉</span> <span>🎉</span> Yayyyyy! Your birthday is a palindrome. <span>🎉</span> <span>🎉</span> <span>🎉</span>";
+      outputText.style.display = "none";
+      spinner.style.display = "block";
+      setTimeout(() => {
+        spinner.style.display = "none";
+        outputText.style.display = "block";
+        outputText.innerHTML = `<span>🎉</span> <span>🎉</span> <span>🎉</span> Yayyyyy! Your birthday <span id="output-text-inverted">${dateOfBirthValue}</span> is a palindrome. <span>🎉</span> <span>🎉</span> <span>🎉</span>`;
+      }, 1500);
     } else {
       var [daysForNextPalindromeDate, nextDate] = getNextPalindromeDate(date);
       var [daysForPreviousPalindromeDate, previousDate] = getPreviousPalindromeDate(date);
-      outputText.style.display = "block";
-      outputText.innerHTML = `
-        <span>🙁</span> Sorry! Your birthday is not a palindrome. <span>🙁</span> <br> 
-        The next palindrome date is ${daysForNextPalindromeDate} days later on 
-        ${nextDate.year}-${nextDate.month}-${nextDate.day}. <br> 
-        The previous palindrome date is ${daysForPreviousPalindromeDate} days ago on 
-        ${previousDate.year}-${previousDate.month}-${previousDate.day}.
-      `;
+
+      // using ternary operator to show 'day' for 1 day and 'days' for more than 1 day
+      var nextDayOrDays = (daysForNextPalindromeDate === 1) ? 'day' : 'days';
+      var previousDayOrDays = (daysForPreviousPalindromeDate) === 1 ? 'day' : 'days';
+
+      outputText.style.display = "none";
+      spinner.style.display = "block";
+      setTimeout(() => {
+        spinner.style.display = "none";
+        outputText.style.display = "block";
+        outputText.innerHTML = `
+          <span>🙁</span> Sorry! Your birthday <span id="output-text-inverted">${dateOfBirthValue}</span> is not a palindrome. <span>🙁</span> <br> 
+          The next palindrome date is <span id="output-text-inverted">${nextDate.year}-${nextDate.month}-${nextDate.day}</span>.
+          You missed it by <span id="output-text-inverted">${daysForNextPalindromeDate}</span> ${nextDayOrDays}. <br> 
+          The previous palindrome date is <span id="output-text-inverted">${previousDate.year}-${previousDate.month}-${previousDate.day}</span>.
+          You missed it by <span id="output-text-inverted">${daysForPreviousPalindromeDate}</span> ${previousDayOrDays}.
+        `;
+      }, 1500);
+
     }
   } else {
-    outputText.style.display = "block";
-    outputText.innerHTML = "<span>🙁</span> You need to enter your full and valid Date of Birth above! <span>🙁</span>";
+    outputText.style.display = "none";
+    spinner.style.display = "block";
+    setTimeout(() => {
+      spinner.style.display = "none";
+      outputText.style.display = "block";
+      outputText.innerHTML = "<span>🙁</span> You need to enter your full and valid Date of Birth above! <span>🙁</span>";
+    }, 1500);
   }
 }
